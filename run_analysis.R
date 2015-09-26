@@ -8,19 +8,22 @@ tidyData <- function() {
 	if(!(file.exists(xTrainPath))){
 		downloadAndUnzip()
 	}
-	# merge train and test X data sets
+	# start step 1, merge train and test X data sets
 	xJoined <- bindDataFrames(xTrainPath, xTestPath)
-	# add descriptive variable names to headers for xJoined
+	# step 4, add descriptive feature names to headers for xJoined
+	# also, ensure that those feature names follow the valid R variable style
 	xJoined <- addFeaturesHeaderToData(xJoined)
-	# remove all columns that do not arise from a mean() or std() variable
+	# step 2, remove all columns that do not arise from a mean() or std() variable
 	xMeanSTD <- keepOnlyMeanAndSTD(xJoined)
-
+	
+	# step 3, get y activities column and adding labeled activities to that column
 	yFiltered <- organizeActivitiesRow()
-
-	#finish steps 1-4, by adding labeled activities to tr
+	#finish steps 1 by adding activities. steps 1-4 complete
+	#this is the "from the data set in step 4" data set as described in the prompt
 	xMeanSTD$activity <- yFiltered
 
 	xMelted <- melt(xMeanSTD, id.vars <-"activity")
+	# step 5, second independent tidy data set with average measurement for each activity and feature
 	xAverages <- dcast(xMelted, ... ~ "average_measurements", mean)
 
 	write.table(xAverages, row.names=FALSE,file="/Users/luke/rWorkspace/project/output")
@@ -54,7 +57,7 @@ addFeaturesHeaderToData <- function(dataFrame) {
 	featuresPath <- paste(getwd(), "/UCI HAR Dataset/features.txt", sep="")
 
 	features <- read.table(featuresPath)
-	#remove non-standard variable name characters, replacing - with _ and () with ""
+	#remove non-standard variable name characters
 	properFeatures <- removeNonStandardFeatureCharacters(features[[2]])
 	names <- as.character(properFeatures)
 	colnames(dataFrame) <- names
