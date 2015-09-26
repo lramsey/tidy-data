@@ -8,22 +8,22 @@ tidyData <- function() {
 	if(!(file.exists(xTrainPath))){
 		downloadAndUnzip()
 	}
-	# start step 1, merge train and test X data sets
+	# start requirement 1, merge train and test X data sets
 	xJoined <- bindDataFrames(xTrainPath, xTestPath)
-	# step 4, add descriptive feature names to headers for xJoined
+	# requirement 4, add descriptive feature names to headers for xJoined
 	# also, ensure that those feature names follow the valid R variable style
 	xJoined <- addFeaturesHeaderToData(xJoined)
-	# step 2, remove all columns that do not arise from a mean() or std() variable
+	# requirement 2, remove all columns that do not arise from a mean() or std() variable
 	xMeanSTD <- keepOnlyMeanAndSTD(xJoined)
 	
-	# step 3, get y activities column and adding labeled activities to that column
+	# requirement 3, get y activities column and adding labeled activities to that column
 	yFiltered <- organizeActivitiesRow()
-	#finish steps 1 by adding activities. steps 1-4 complete
-	#this is the "from the data set in step 4" data set as described in the prompt
+	#finish requirements 1 by adding activities. requirements 1-4 complete
+	#this is the "from the data set in requirement 4" data set as described in the prompt
 	xMeanSTD$activity <- yFiltered
 
 	xMelted <- melt(xMeanSTD, id.vars <-"activity")
-	# step 5, second independent tidy data set with average measurement for each activity and feature
+	# requirement 5, second independent tidy data set with average measurement for each activity and feature
 	xAverages <- dcast(xMelted, ... ~ "average_measurements", mean)
 
 	destination <- paste(getwd(), "/tidyDataSet.txt", sep="")
