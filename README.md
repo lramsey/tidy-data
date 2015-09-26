@@ -1,6 +1,6 @@
 #Getting and Cleaning Data Project
 
-This is a class project the Getting and Cleaning Data coursera class, using a UCI [data set](https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip) describing data captured from the accelerometers on Samsung Galaxy S smartphones.  Also, [here](http://archive.ics.uci.edu/ml/datasets/Human+Activity+Recognition+Using+Smartphones) is a description of the data set.  The goal here is to use R and tidy data principles to turn this complex data set into one that is simple and easy to take in at a glance. I shall list the five requirements below.
+This is a class project for the [Getting and Cleaning Data](https://www.coursera.org/course/getdata) coursera class, using a UCI [data set](https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip) describing data captured from the accelerometers on Samsung Galaxy S smartphones.  Also, [here](http://archive.ics.uci.edu/ml/datasets/Human+Activity+Recognition+Using+Smartphones) is a description of the data set.  The goal here is to use R and tidy data principles to turn this complex data set into one that is simple and easy to take in at a glance. I shall list the five requirements below.
 
 1.	Merges the training and the test sets to create one data set.  
 2.	Extracts only the measurements on the mean and standard deviation for each measurement.  
