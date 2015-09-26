@@ -24,12 +24,11 @@ tidyData <- function() {
 
 	xMelted <- melt(xMeanSTD, id.vars <-"activity")
 	# requirement 5, second independent tidy data set with average measurement for each activity and feature
-	xAverages <- dcast(xMelted, ... ~ "average_measurements", mean)
+	xAverages <- dcast(xMelted, ... ~ "average_measurement", mean)
 
 	destination <- paste(getwd(), "/tidyDataSet.txt", sep="")
 	write.table(xAverages, row.names=FALSE,file=destination)
 	return(xAverages)
-
 }
 
 loadOrInstallReshap2 <- function(){
