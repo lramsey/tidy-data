@@ -26,7 +26,8 @@ tidyData <- function() {
 	# step 5, second independent tidy data set with average measurement for each activity and feature
 	xAverages <- dcast(xMelted, ... ~ "average_measurements", mean)
 
-	write.table(xAverages, row.names=FALSE,file="/Users/luke/rWorkspace/project/tidyDataSet.txt")
+	destination <- paste(getwd(), "/tidyDataSet.txt", sep="")
+	write.table(xAverages, row.names=FALSE,file=destination)
 	return(xAverages)
 
 }
